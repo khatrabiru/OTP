@@ -18,7 +18,7 @@ public class OtpController {
         if(!validateTTL(ttl)) {
             return ResponseEntity
                     .status(400)
-                    .body("Invalid TTL");
+                    .body("Invalid TTL.");
         }
         return ResponseEntity
                 .status(201)
@@ -31,7 +31,7 @@ public class OtpController {
         if(!otpService.verifyOTP(otp)) {
             return ResponseEntity
                     .status(404)
-                    .body("OTP is not valid");
+                    .body("OTP is not valid.");
         }
         return ResponseEntity
                 .status(200)
