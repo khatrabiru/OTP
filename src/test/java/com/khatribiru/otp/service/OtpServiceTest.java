@@ -16,4 +16,25 @@ public class OtpServiceTest {
         Assertions.assertNotNull(otp);
         Assertions.assertTrue(otp.length() > 10);
     }
+
+    @Test
+    void verifyOTPFalse(){
+        boolean verify = otpService.verifyOTP("dummy.otp");
+        Assertions.assertFalse(verify);
+    }
+
+    @Test
+    void verifyOTPTrue(){
+        String otp = otpService.createOTP(10);
+        boolean verify = otpService.verifyOTP(otp);
+        Assertions.assertTrue(verify);
+    }
+
+    @Test
+    void verifyOTPExpired() throws InterruptedException {
+        String otp = otpService.createOTP(1);
+        Thread.sleep(1000);
+        boolean verify = otpService.verifyOTP(otp);
+        Assertions.assertTrue(verify);
+    }
 }
