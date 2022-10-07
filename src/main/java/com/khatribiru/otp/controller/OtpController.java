@@ -16,7 +16,8 @@ public class OtpController {
     @ResponseBody
     public ResponseEntity<Object> createOTP(@RequestParam(required = false, defaultValue = "30") String ttl){
         if(!validateTTL(ttl)) {
-            return ResponseEntity.badRequest()
+            return ResponseEntity
+                    .status(400)
                     .body("Invalid TTL");
         }
         return ResponseEntity
@@ -28,10 +29,13 @@ public class OtpController {
     @ResponseBody
     public ResponseEntity<Object> verifyOTP(@PathVariable String otp){
         if(!otpService.verifyOTP(otp)) {
-            return ResponseEntity.badRequest()
-                    .body("Invalid OTP");
+            return ResponseEntity
+                    .status(404)
+                    .body("OTP is not valid");
         }
-        return ResponseEntity.ok().build();
+        return ResponseEntity
+                .status(200)
+                .body("OTP verified successfully.");
     }
 
     private boolean validateTTL(String ttl) {
