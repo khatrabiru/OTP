@@ -35,6 +35,6 @@ public class OtpServiceTest {
         String otp = otpService.createOTP(1);
         Thread.sleep(1000);
         boolean verify = otpService.verifyOTP(otp);
-        Assertions.assertTrue(verify);
+        Assertions.assertFalse(verify);
     }
 }
