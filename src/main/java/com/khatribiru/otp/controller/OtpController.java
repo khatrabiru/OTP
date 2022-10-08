@@ -1,7 +1,6 @@
 package com.khatribiru.otp.controller;
 
 import com.khatribiru.otp.service.OtpService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,8 +8,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/otp")
 public class OtpController {
 
-    @Autowired
-    OtpService otpService;
+    final OtpService otpService;
+
+    public OtpController(OtpService otpService) {
+        this.otpService = otpService;
+    }
 
     @PostMapping("/create")
     @ResponseBody
