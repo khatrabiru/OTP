@@ -17,7 +17,7 @@ public class OtpController {
     public ResponseEntity<Object> createOTP(@RequestParam(required = false, defaultValue = "30") String ttl){
         if(!validateTTL(ttl)) {
             return ResponseEntity
-                    .status(400)
+                    .badRequest()
                     .body("Invalid TTL.");
         }
         return ResponseEntity

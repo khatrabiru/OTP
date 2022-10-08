@@ -15,7 +15,6 @@ public class OtpService {
     static KeyPair keyPair = Keys.keyPairFor(SignatureAlgorithm.RS256);
 
     public String createOTP(long ttl) {
-        System.out.println(ttl);
         long ttlInMillis = ttl * 1000;
         JwtBuilder builder = Jwts.builder()
                 .setExpiration(new Date(System.currentTimeMillis() + ttlInMillis))
